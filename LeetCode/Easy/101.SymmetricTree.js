@@ -11,48 +11,26 @@
  * @return {boolean}
  */
 const isSymmetric = function (root) {
+  if (!root) { // Sanity check
+    return true;
+}
 
-  let curr = root;
-  let stack = [curr.left, curr.right];
-  let num = 0; 
-  let case = true;
-
-  while (case) {
-    let length = stack.length;
-
-    for (let i = 0; i < length / 2; i++) {
-      if (stack[i] !== stack[length - i]) {
-        return false
-      }
+// Check if tree s & t are mirroring each other
+function isMirror(s, t) {
+    if (!s && !t) {
+        return true; // Both nodes are null, ok
     }
-
-    for (let i = 0; i < length; i++) {
-      stack.push(stack[i].left);
-      stack.push(stack[i].right);
+    if (!s || !t || s.val !== t.val) {
+        return false; // Found a mismatch
     }
+    // Compare the left subtree of `s` with the right subtree of `t`
+    // and the right subtree of `s` with the left subtree of `t`
+    return isMirror(s.left, t.right) && isMirror(s.right, t.left);
+}
 
-    stack.splice(0, length)
-
-    num = 0
-    for (let i of stack) {
-      if (i === null) {
-        num++
-      }
-      if (num === stack.length) {
-        case = !case
-      }
-    }
-  }
-
-return true
+return isMirror(root.left, root.right);
 };
 
 console.log(isSymmetric())
 
-node 1   
-node 2 2   
-node 34 43
-567 765
-  
-길이 절반으로 나누고 맨앞과 맨뒤를 비교
 

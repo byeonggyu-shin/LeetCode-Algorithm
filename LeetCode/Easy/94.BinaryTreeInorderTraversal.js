@@ -11,8 +11,8 @@
  * @return {number[]}
  */
 const inorderTraversal = function (root) {
+  
   const output = [];
-
   if (root === null) {
     return output;
   }
