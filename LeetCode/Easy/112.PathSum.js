@@ -11,38 +11,37 @@
  * @param {number} targetSum
  * @return {boolean}
  */
- const hasPathSum = function(root, targetSum) {
-  let sum = root.val;
+//  const hasPathSum = function(root, targetSum) {
+//   let sum = root.val;
 
-  const rootSum = (node) => {
-    if(node !== null){
-    sum = sum + node.val
-    }
-    if( sum === targetSum){
-      return true
-    }
-    if(node.left === null && node.right === null){
-      return false
-    }
-    return rootSum(node.right)|| rootSum(node.left)
-  }
+//   const rootSum = (node) => {
+//     if(node !== null){
+//     sum = sum + node.val
+//     } else if( sum === targetSum){
+//       return true
+//     } else if(node.left === null && node.right === null){
+//       return false
+//     } else {
+//     return rootSum(node.right)|| rootSum(node.left)
+//     }
+//   }
 
- return rootSum(root.left)||rootSum(root.right)
-};
-
-// var hasPathSum = function(root, targetSum) {
-//   return dfs(root, targetSum);
-//   // T.C: O(N)
-//   // S.C: O(H)
+//  return rootSum(root.left)||rootSum(root.right)
 // };
 
-// const dfs = (root, target) => {
-//   if (!root) {
-//       return false;
-//   }
-//   if (!root.left && !root.right) {
-//       return target - root.val === 0;
-//   }
-//   return dfs(root.left, target - root.val) || 
-//       dfs(root.right, target - root.val);
-// }
+var hasPathSum = function(root, targetSum) {
+  return dfs(root, targetSum);
+  // T.C: O(N)
+  // S.C: O(H)
+};
+
+const dfs = (root, target) => {
+  if (!root) {
+      return false;
+  }
+  if (!root.left && !root.right) {
+      return target - root.val === 0;
+  }
+  return dfs(root.left, target - root.val) || 
+      dfs(root.right, target - root.val);
+}

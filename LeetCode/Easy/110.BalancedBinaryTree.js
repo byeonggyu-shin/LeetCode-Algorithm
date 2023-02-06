@@ -16,13 +16,13 @@
         return -1;
     }
     return 1 + Math.max(height(node.left), height(node.right));
-}
+  }
   if (root === null) {
     return true;
-} else {
+  } else {
     let diff = Math.abs(height(root.left) - height(root.right));
     return diff < 2
         && isBalanced(root.left)
         && isBalanced(root.right);
-}
+  }
 };
