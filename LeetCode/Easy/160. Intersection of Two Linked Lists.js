@@ -15,15 +15,12 @@ var getIntersectionNode = function(headA, headB) {
     
   // 이중반복문으로 A,B 비교 
   // A.slice(n,A.length) === B 
-for(let i=0 ; i<headA.length; i++){
-  let newA = headA.slice(i ,headA.length-1)
-  
-  for(let j=0; j< headB.length; j++){
-    if(headB[i] === newA[0]){
-      if(headB[i+1] === newA[1]){
-        return headB[i]
-      }
-    }
+  let a = headA, b = headB
+  while (a !== b) {
+    // 비교 반복 
+      a = !a ? headB : a.next
+      // b와 a의 다음 비교
+      b = !b ? headA : b.next
   }
-}
+  return a
 };
